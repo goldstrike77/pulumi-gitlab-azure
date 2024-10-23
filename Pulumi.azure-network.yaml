@@ -1,0 +1,5 @@
+encryptionsalt: v1:nsCB0x68o/s=:v1:SDET40+JsfCqB0ZA:2H0Gc+RuvuoF3Ogc1MZLaMUcKtsm9g==
+config:
+  azure-native:environment: public
+  azure-native:subscriptionId: b971283c-e0b7-46a4-9496-9cbfb850ebe5
+  azure-native:tenantId: e824e20c-c5d7-4a69-adb1-3494404763a5

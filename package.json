@@ -1,0 +1,9 @@
+{
+    "name": "azure",
+    "devDependencies": {
+        "@types/node": "^16"
+    },
+    "dependencies": {
+        "@pulumi/pulumi": "^3.0.0"
+    }
+}
