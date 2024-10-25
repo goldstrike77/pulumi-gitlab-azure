@@ -1,5 +1,5 @@
 import * as pulumi from "@pulumi/pulumi";
-import * as azure_module from "./pulumi-ts-module-azure";
+import * as azure from "./pulumi-ts-module-azure";
 
 const tags = {
     project: pulumi.getProject(),
@@ -9,7 +9,7 @@ const tags = {
     owner: "somebody@gmail.com"
 }
 
-const resources = [
+const azure_resources = [
     {
         ResourceGroup: {
             location: "eastasia",
@@ -277,27 +277,27 @@ const resources = [
     }
 ]
 
-const resourcegroup = new azure_module.resources.ResourceGroup('ResourceGroup', {
-    resources: resources,
+const resourcegroup = new azure.resources.ResourceGroup('ResourceGroup', {
+    resources: azure_resources,
     tags: tags || {}
 })
 
-const networksecuritygroup = new azure_module.network.NetworkSecurityGroup('NetworkSecurityGroup', {
-    resources: resources,
+const networksecuritygroup = new azure.network.NetworkSecurityGroup('NetworkSecurityGroup', {
+    resources: azure_resources,
     tags: tags || {}
 }, { dependsOn: [resourcegroup] });
 
-const virtualnetwork = new azure_module.network.VirtualNetwork('VirtualNetwork', {
-    resources: resources,
+const virtualnetwork = new azure.network.VirtualNetwork('VirtualNetwork', {
+    resources: azure_resources,
     tags: tags || {}
 }, { dependsOn: [resourcegroup] });
 
-const subnet = new azure_module.network.Subnet('Subnet', {
-    resources: resources,
+const subnet = new azure.network.Subnet('Subnet', {
+    resources: azure_resources,
     tags: tags || {}
 }, { dependsOn: [virtualnetwork, networksecuritygroup] });
 
-const virtualnetworkpeering = new azure_module.network.VirtualNetworkPeering('VirtualNetworkPeering', {
-    resources: resources,
+const virtualnetworkpeering = new azure.network.VirtualNetworkPeering('VirtualNetworkPeering', {
+    resources: azure_resources,
     tags: tags || {}
 }, { dependsOn: [subnet] });
