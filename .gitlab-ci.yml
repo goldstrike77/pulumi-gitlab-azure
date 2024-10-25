@@ -30,7 +30,7 @@ deploy:
     - pulumi up -yf
   when: manual
 
-deploy:
+cleanup:
   stage: cleanup
   script:
     - pulumi plugin install resource azure-native v2.68.0 --server https://obs.home.local/mirror/pulumi/plugins
