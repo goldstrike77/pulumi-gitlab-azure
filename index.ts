@@ -1,6 +1,5 @@
 import * as pulumi from "@pulumi/pulumi";
-//import * as azure_module from "pulumi-ts-module-azure";
-import * as azure_module from "/home/oper/gitea/pulumi/module/pulumi-ts-module-azure";
+import * as azure_module from "./pulumi-ts-module-azure";
 
 const tags = {
     project: pulumi.getProject(),
