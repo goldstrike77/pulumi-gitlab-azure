@@ -1,0 +1,41 @@
+stages:
+  - build
+  - deploy
+  - cleanup
+
+variables:
+  PULUMI_SKIP_UPDATE_CHECK: true
+
+image:
+  name: registry.cn-hangzhou.aliyuncs.com/goldenimage/pulumi:3.35.3
+
+before_script:
+  - cp /etc/gitlab-runner/certs/gitlab.home.local.crt /usr/local/share/ca-certificates/ca.crt
+  - update-ca-certificates
+
+complex_build_job:
+  stage: build
+  script:
+    - echo "pulumi rocks!"
+
+deploy:
+  stage: deploy
+  script:
+    - pulumi plugin install resource azure-native v2.68.0 --server https://obs.home.local/mirror/pulumi/plugins
+    - pulumi plugin install resource random v4.16.7 --server https://obs.home.local/mirror/pulumi/plugins
+    - npm install
+    - pulumi login 's3://state?endpoint=minio.home.local:80&disableSSL=true&s3ForcePathStyle=true'
+    - pulumi stack select azure-network
+    - pulumi up -yf
+  when: manual
+
+deploy:
+  stage: cleanup
+  script:
+    - pulumi plugin install resource azure-native v2.68.0 --server https://obs.home.local/mirror/pulumi/plugins
+    - pulumi plugin install resource random v4.16.7 --server https://obs.home.local/mirror/pulumi/plugins
+    - npm install
+    - pulumi login 's3://state?endpoint=minio.home.local:80&disableSSL=true&s3ForcePathStyle=true'
+    - pulumi stack select azure-network
+    - pulumi destroy -yf
+  when: manual
