@@ -5,6 +5,7 @@ stages:
 
 variables:
   PULUMI_SKIP_UPDATE_CHECK: true
+  AWS_REGION: "us-east-1"
 
 image:
   name: registry.cn-hangzhou.aliyuncs.com/goldenimage/pulumi:3.35.3
@@ -28,7 +29,9 @@ deploy:
     - pulumi login 's3://state?endpoint=minio.home.local:80&disableSSL=true&s3ForcePathStyle=true'
     - pulumi stack select azure-network
     - pulumi up -yf
-  when: manual
+  rules:
+    - if: $CI_COMMIT_TITLE == "deploy"
+      when: on_success 
 
 cleanup:
   stage: cleanup
@@ -40,4 +43,6 @@ cleanup:
     - pulumi login 's3://state?endpoint=minio.home.local:80&disableSSL=true&s3ForcePathStyle=true'
     - pulumi stack select azure-network
     - pulumi destroy -yf
-  when: manual
+  rules:
+    - if: $CI_COMMIT_TITLE == "destroy"
+      when: on_success
