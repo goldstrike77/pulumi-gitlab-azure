@@ -11,10 +11,6 @@ variables:
 image:
   name: registry.cn-hangzhou.aliyuncs.com/goldenimage/pulumi:3.35.3
 
-cache:
-  key: $CI_COMMIT_REF_SLUG
-  policy: pull
-
 before_script:
   - cp /etc/gitlab-runner/certs/gitlab.home.local.crt /usr/local/share/ca-certificates/ca.crt
   - update-ca-certificates
@@ -22,6 +18,7 @@ before_script:
 build:
   stage: build
   cache:
+    key: $CI_COMMIT_REF_SLUG
     paths:
       - node_modules/
       - .pulumi/
@@ -37,6 +34,9 @@ build:
 
 deploy:
   stage: deploy
+  cache:
+    key: $CI_COMMIT_REF_SLUG
+    policy: pull
   script:
     - git -c http.sslVerify=false clone https://gitea.home.local/suzhetao/pulumi-ts-module-azure.git
     - pulumi up -yf
@@ -46,6 +46,9 @@ deploy:
 
 cleanup:
   stage: cleanup
+  cache:
+    key: $CI_COMMIT_REF_SLUG
+    policy: pull
   script:
     - git -c http.sslVerify=false clone https://gitea.home.local/suzhetao/pulumi-ts-module-azure.git
     - pulumi destroy -yf
