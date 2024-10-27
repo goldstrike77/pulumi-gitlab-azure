@@ -31,6 +31,7 @@ build:
 
 deploy:
   stage: deploy
+  script:
     - pulumi up -yf
   rules:
     - if: $CI_COMMIT_TITLE == "deploy"
