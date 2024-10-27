@@ -14,23 +14,24 @@ image:
 default:
   cache:
     key: $CI_COMMIT_REF_SLUG
-    paths:
-      - node_modules/
-      - .pulumi/
-      - package-lock.json
     policy: pull
 
 before_script:
   - cp /etc/gitlab-runner/certs/gitlab.home.local.crt /usr/local/share/ca-certificates/ca.crt
   - update-ca-certificates
-  - pulumi login 's3://state?endpoint=minio.home.local:80&disableSSL=true&s3ForcePathStyle=true'
-  - pulumi stack select azure-network
 
 build:
   stage: build
   cache:
+    key: $CI_COMMIT_REF_SLUG
+    paths:
+      - node_modules/
+      - .pulumi/
+      - package-lock.json
     policy: push
   script:
+    - pulumi login 's3://state?endpoint=minio.home.local:80&disableSSL=true&s3ForcePathStyle=true'
+    - pulumi stack select azure-network
     - pulumi plugin install resource azure-native v2.68.0 --server https://obs.home.local/mirror/pulumi/plugins
     - pulumi plugin install resource random v4.16.7 --server https://obs.home.local/mirror/pulumi/plugins
     - npm config set registry https://registry.npmmirror.com
