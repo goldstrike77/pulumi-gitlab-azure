@@ -24,10 +24,12 @@ build:
     - npm config set registry https://registry.npmmirror.com
     - npm install
     - git -c http.sslVerify=false clone https://gitea.home.local/suzhetao/pulumi-ts-module-azure.git
-  cache:
+  artifacts:
     paths:
       - node_modules
       - pulumi-ts-module-azure
+    expire_in: 6 hours
+    when: on_success
 
 deploy:
   stage: deploy
