@@ -23,7 +23,6 @@ build:
     - pulumi plugin install resource random v4.16.7 --server https://obs.home.local/mirror/pulumi/plugins
     - npm config set registry https://registry.npmmirror.com
     - npm install
-    - git -c http.sslVerify=false clone https://gitea.home.local/suzhetao/pulumi-ts-module-azure.git
   cache:
     paths:
       - node_modules
@@ -32,6 +31,7 @@ build:
 deploy:
   stage: deploy
   script:
+    - git -c http.sslVerify=false clone https://gitea.home.local/suzhetao/pulumi-ts-module-azure.git
     - pulumi up -yf
   rules:
     - if: $CI_COMMIT_TITLE == "deploy"
@@ -40,6 +40,7 @@ deploy:
 cleanup:
   stage: cleanup
   script:
+    - git -c http.sslVerify=false clone https://gitea.home.local/suzhetao/pulumi-ts-module-azure.git
     - pulumi destroy -yf
   rules:
     - if: $CI_COMMIT_TITLE == "destroy"
