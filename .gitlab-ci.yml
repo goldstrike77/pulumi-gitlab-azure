@@ -29,7 +29,7 @@ before_script:
 build:
   stage: build
   cache:
-    policy: pull-push
+    policy: push
   script:
     - pulumi plugin install resource azure-native v2.68.0 --server https://obs.home.local/mirror/pulumi/plugins
     - pulumi plugin install resource random v4.16.7 --server https://obs.home.local/mirror/pulumi/plugins
