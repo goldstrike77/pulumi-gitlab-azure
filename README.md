@@ -2,5 +2,5 @@
 
 ```
 deploy time: 00:02:27
-destroy time: 
+destroy time: 00:03:56
 ``` 
