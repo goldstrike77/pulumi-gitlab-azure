@@ -14,6 +14,10 @@ image:
 default:
   cache:
     key: $CI_COMMIT_REF_SLUG
+    paths:
+      - node_modules/
+      - .pulumi/
+      - package-lock.json
     policy: pull
 
 before_script:
@@ -25,10 +29,6 @@ before_script:
 build:
   stage: build
   cache:
-    paths:
-      - node_modules/
-      - .pulumi/
-      - package-lock.json
     policy: pull-push
   script:
     - pulumi plugin install resource azure-native v2.68.0 --server https://obs.home.local/mirror/pulumi/plugins
