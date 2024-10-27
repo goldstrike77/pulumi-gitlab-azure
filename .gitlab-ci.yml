@@ -17,16 +17,14 @@ before_script:
   - pulumi login 's3://state?endpoint=minio.home.local:80&disableSSL=true&s3ForcePathStyle=true'
   - pulumi stack select azure-network
 
-default:
+build:
+  stage: build
   cache:
     key: $CI_COMMIT_REF_SLUG
     paths:
       - node_modules/
       - .pulumi/
       - package-lock.json
-
-build:
-  stage: build
   script:
     - pulumi plugin install resource azure-native v2.68.0 --server https://obs.home.local/mirror/pulumi/plugins
     - pulumi plugin install resource random v4.16.7 --server https://obs.home.local/mirror/pulumi/plugins
