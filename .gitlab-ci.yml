@@ -11,6 +11,14 @@ variables:
 image:
   name: registry.cn-hangzhou.aliyuncs.com/goldenimage/pulumi:3.35.3
 
+cache:
+  key: $CI_COMMIT_REF_SLUG
+  paths:
+    - node_modules/
+    - .pulumi/
+    - package-lock.json
+  policy: pull
+
 before_script:
   - cp /etc/gitlab-runner/certs/gitlab.home.local.crt /usr/local/share/ca-certificates/ca.crt
   - update-ca-certificates
@@ -23,7 +31,7 @@ build:
       - node_modules/
       - .pulumi/
       - package-lock.json
-    policy: push
+    policy: pull-push
   script:
     - pulumi login 's3://state?endpoint=minio.home.local:80&disableSSL=true&s3ForcePathStyle=true'
     - pulumi stack select azure-network
@@ -34,9 +42,6 @@ build:
 
 deploy:
   stage: deploy
-  cache:
-    key: $CI_COMMIT_REF_SLUG
-    policy: pull
   script:
     - git -c http.sslVerify=false clone https://gitea.home.local/suzhetao/pulumi-ts-module-azure.git
     - pulumi up -yf
@@ -46,9 +51,6 @@ deploy:
 
 cleanup:
   stage: cleanup
-  cache:
-    key: $CI_COMMIT_REF_SLUG
-    policy: pull
   script:
     - git -c http.sslVerify=false clone https://gitea.home.local/suzhetao/pulumi-ts-module-azure.git
     - pulumi destroy -yf
