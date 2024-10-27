@@ -11,8 +11,9 @@ variables:
 image:
   name: registry.cn-hangzhou.aliyuncs.com/goldenimage/pulumi:3.35.3
 
-global:
-  cache: 
+default:
+  cache:
+    key: $CI_COMMIT_REF_SLUG
     policy: pull
 
 before_script:
@@ -24,7 +25,6 @@ before_script:
 build:
   stage: build
   cache:
-    key: $CI_COMMIT_REF_SLUG
     paths:
       - node_modules/
       - .pulumi/
