@@ -23,6 +23,7 @@ default:
     paths:
       - node_modules/
       - .pulumi/
+      - pulumi-ts-module-azure
       - package-lock.json
 
 build:
