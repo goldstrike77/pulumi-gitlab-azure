@@ -13,6 +13,10 @@ image:
 
 cache:
   key: $CI_COMMIT_REF_SLUG
+  paths:
+    - node_modules/
+    - .pulumi/
+    - package-lock.json
   policy: pull
 
 before_script:
