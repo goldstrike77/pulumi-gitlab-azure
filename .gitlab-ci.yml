@@ -20,11 +20,10 @@ before_script:
 default:
   cache:
     key: $CI_COMMIT_REF_SLUG
-    files:
-      - package-lock.json
     paths:
       - node_modules/
       - .pulumi/
+      - package-lock.json
 
 build:
   stage: build
