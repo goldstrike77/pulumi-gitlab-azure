@@ -13,22 +13,24 @@ image:
 before_script:
   - cp /etc/gitlab-runner/certs/gitlab.home.local.crt /usr/local/share/ca-certificates/ca.crt
   - update-ca-certificates
+  - pulumi login 's3://state?endpoint=minio.home.local:80&disableSSL=true&s3ForcePathStyle=true'
+  - pulumi stack select azure-network
 
-complex_build_job:
+build:
   stage: build
-  script:
-    - echo "pulumi rocks!"
-
-deploy:
-  stage: deploy
   script:
     - pulumi plugin install resource azure-native v2.68.0 --server https://obs.home.local/mirror/pulumi/plugins
     - pulumi plugin install resource random v4.16.7 --server https://obs.home.local/mirror/pulumi/plugins
     - npm config set registry https://registry.npmmirror.com
     - npm install
     - git -c http.sslVerify=false clone https://gitea.home.local/suzhetao/pulumi-ts-module-azure.git
-    - pulumi login 's3://state?endpoint=minio.home.local:80&disableSSL=true&s3ForcePathStyle=true'
-    - pulumi stack select azure-network
+  cache:
+    paths:
+      - node_modules
+      - pulumi-ts-module-azure
+
+deploy:
+  stage: deploy
     - pulumi up -yf
   rules:
     - if: $CI_COMMIT_TITLE == "deploy"
@@ -37,13 +39,6 @@ deploy:
 cleanup:
   stage: cleanup
   script:
-    - pulumi plugin install resource azure-native v2.68.0 --server https://obs.home.local/mirror/pulumi/plugins
-    - pulumi plugin install resource random v4.16.7 --server https://obs.home.local/mirror/pulumi/plugins
-    - npm config set registry https://registry.npmmirror.com
-    - npm install
-    - git -c http.sslVerify=false clone https://gitea.home.local/suzhetao/pulumi-ts-module-azure.git
-    - pulumi login 's3://state?endpoint=minio.home.local:80&disableSSL=true&s3ForcePathStyle=true'
-    - pulumi stack select azure-network
     - pulumi destroy -yf
   rules:
     - if: $CI_COMMIT_TITLE == "destroy"
