@@ -80,6 +80,14 @@ const azure_resources = [
                             allowVirtualNetworkAccess: true,
                             useRemoteGateways: false,
                             remoteVirtualNetwork: { id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-rds-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-vm-eastasia-001" }
+                        },
+                        {
+                            virtualNetworkPeeringName: "vnet-p-network-transit-eastasia-001-peer-vnet-p-network-bigdata-eastasia-001",
+                            allowForwardedTraffic: false,
+                            allowGatewayTransit: true,
+                            allowVirtualNetworkAccess: true,
+                            useRemoteGateways: false,
+                            remoteVirtualNetwork: { id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-bigdata-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-bigdata-eastasia-001" }
                         }
                     ]
                 }
@@ -264,6 +272,33 @@ const azure_resources = [
                     virtualNetworkPeerings: [
                         {
                             virtualNetworkPeeringName: "vnet-p-network-vm-eastasia-001-peer-vnet-p-network-transit-eastasia-001",
+                            allowForwardedTraffic: true,
+                            allowGatewayTransit: false,
+                            allowVirtualNetworkAccess: true,
+                            useRemoteGateways: false, // 部署网关后启用。
+                            remoteVirtualNetwork: { id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-transit-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-transit-eastasia-001" }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        ResourceGroup: {
+            location: "eastasia",
+            resourceGroupName: "rg-p-network-bigdata-eastasia-001",
+            tags: {},
+            VirtualNetwork: [
+                {
+                    addressSpace: {
+                        addressPrefixes: ["10.30.0.0/16", "10.31.0.0/16"]
+                    },
+                    virtualNetworkName: "vnet-p-network-bigdata-eastasia-001",
+                    tags: {},
+                    subnets: [],
+                    virtualNetworkPeerings: [
+                        {
+                            virtualNetworkPeeringName: "vnet-p-network-bigdata-eastasia-001-p-vnet-p-network-transit-eastasia-001",
                             allowForwardedTraffic: true,
                             allowGatewayTransit: false,
                             allowVirtualNetworkAccess: true,
