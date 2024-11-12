@@ -300,7 +300,7 @@ const azure_resources = [
                             addressPrefixes: ["10.30.0.0/23"],
                             subnetName: "snet-p-network-bigdata-eastasia-001",
                             networkSecurityGroup: {
-                                id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-container-eastasia-001/providers/Microsoft.Network/networkSecurityGroups/nsg-snet-p-network-bigdata-eastasia-001"
+                                id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-bigdata-eastasia-001/providers/Microsoft.Network/networkSecurityGroups/nsg-snet-p-network-bigdata-eastasia-001"
                             }
                         },
                         {
