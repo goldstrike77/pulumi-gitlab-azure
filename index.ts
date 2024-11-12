@@ -295,7 +295,16 @@ const azure_resources = [
                     },
                     virtualNetworkName: "vnet-p-network-bigdata-eastasia-001",
                     tags: {},
-                    subnets: [],
+                    subnets: [
+                        {
+                            addressPrefixes: ["10.30.0.0/23"],
+                            subnetName: "snet-p-network-bigdata-eastasia-001",
+                        },
+                        {
+                            addressPrefixes: ["10.30.2.0/23"],
+                            subnetName: "snet-p-network-bigdata-eastasia-002",
+                        }
+                    ],
                     virtualNetworkPeerings: [
                         {
                             virtualNetworkPeeringName: "vnet-p-network-bigdata-eastasia-001-p-vnet-p-network-transit-eastasia-001",
