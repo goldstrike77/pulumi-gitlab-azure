@@ -298,6 +298,11 @@ const azure_resources = [
                     subnets: [
                         {
                             addressPrefixes: ["10.30.0.0/23"],
+                            delegations: [
+                                {
+                                    serviceName: "Microsoft.Databricks/workspaces"
+                                }
+                            ],
                             subnetName: "snet-p-network-bigdata-eastasia-001",
                             networkSecurityGroup: {
                                 id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-bigdata-eastasia-001/providers/Microsoft.Network/networkSecurityGroups/nsg-snet-p-network-bigdata-eastasia-001"
@@ -305,6 +310,11 @@ const azure_resources = [
                         },
                         {
                             addressPrefixes: ["10.30.2.0/23"],
+                            delegations: [
+                                {
+                                    serviceName: "Microsoft.Databricks/workspaces"
+                                }
+                            ],
                             subnetName: "snet-p-network-bigdata-eastasia-002",
                             networkSecurityGroup: {
                                 id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-bigdata-eastasia-001/providers/Microsoft.Network/networkSecurityGroups/nsg-snet-p-network-bigdata-eastasia-002"
