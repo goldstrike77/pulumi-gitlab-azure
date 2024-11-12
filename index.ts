@@ -308,12 +308,6 @@ const azure_resources = [
                             subnetName: "snet-p-network-bigdata-eastasia-002",
                         }
                     ],
-                    NetworkSecurityGroup: [
-                        {
-                            networkSecurityGroupName: "nsg-snet-p-network-bigdata-eastasia-001",
-                            securityRules: [],
-                        }
-                    ],
                     virtualNetworkPeerings: [
                         {
                             virtualNetworkPeeringName: "vnet-p-network-bigdata-eastasia-001-p-vnet-p-network-transit-eastasia-001",
@@ -324,6 +318,12 @@ const azure_resources = [
                             remoteVirtualNetwork: { id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-transit-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-transit-eastasia-001" }
                         }
                     ]
+                }
+            ],
+            NetworkSecurityGroup: [
+                {
+                    networkSecurityGroupName: "nsg-snet-p-network-bigdata-eastasia-001",
+                    securityRules: [],
                 }
             ]
         }
