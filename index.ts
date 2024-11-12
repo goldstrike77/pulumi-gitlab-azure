@@ -300,6 +300,7 @@ const azure_resources = [
                             addressPrefixes: ["10.30.0.0/23"],
                             delegations: [
                                 {
+                                    name: "Microsoft.Databricks/workspaces",
                                     serviceName: "Microsoft.Databricks/workspaces"
                                 }
                             ],
@@ -312,6 +313,7 @@ const azure_resources = [
                             addressPrefixes: ["10.30.2.0/23"],
                             delegations: [
                                 {
+                                    name: "Microsoft.Databricks/workspaces",
                                     serviceName: "Microsoft.Databricks/workspaces"
                                 }
                             ],
