@@ -42,20 +42,20 @@ const azure_resources = [
                     ],
                     virtualNetworkPeerings: [
                         {
-                            virtualNetworkPeeringName: "vnet-p-network-transit-eastasia-001-peer-vnet-p-network-aks-eastasia-001",
+                            virtualNetworkPeeringName: "vnet-p-network-transit-eastasia-001-peer-vnet-p-network-containers-eastasia-001",
                             allowForwardedTraffic: false,
                             allowGatewayTransit: true,
                             allowVirtualNetworkAccess: true,
                             useRemoteGateways: false,
-                            remoteVirtualNetwork: { id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-containers-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-aks-eastasia-001" }
+                            remoteVirtualNetwork: { id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-containers-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-containers-eastasia-001" }
                         },
                         {
-                            virtualNetworkPeeringName: "vnet-p-network-transit-eastasia-001-peer-vnet-p-network-aks-eastasia-002",
+                            virtualNetworkPeeringName: "vnet-p-network-transit-eastasia-001-peer-vnet-p-network-containers-eastasia-002",
                             allowForwardedTraffic: false,
                             allowGatewayTransit: true,
                             allowVirtualNetworkAccess: true,
                             useRemoteGateways: false,
-                            remoteVirtualNetwork: { id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-containers-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-aks-eastasia-002" }
+                            remoteVirtualNetwork: { id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-containers-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-containers-eastasia-002" }
                         },
                         {
                             virtualNetworkPeeringName: "vnet-p-network-transit-eastasia-001-peer-vnet-p-network-databases-eastasia-001",
@@ -74,12 +74,12 @@ const azure_resources = [
                             remoteVirtualNetwork: { id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-databases-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-databases-eastasia-002" }
                         },
                         {
-                            virtualNetworkPeeringName: "vnet-p-network-transit-eastasia-001-peer-vnet-p-network-vm-eastasia-001",
+                            virtualNetworkPeeringName: "vnet-p-network-transit-eastasia-001-peer-vnet-p-network-compute-eastasia-001",
                             allowForwardedTraffic: false,
                             allowGatewayTransit: true,
                             allowVirtualNetworkAccess: true,
                             useRemoteGateways: false,
-                            remoteVirtualNetwork: { id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-databases-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-vm-eastasia-001" }
+                            remoteVirtualNetwork: { id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-databases-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-compute-eastasia-001" }
                         },
                         {
                             virtualNetworkPeeringName: "vnet-p-network-transit-eastasia-001-peer-vnet-p-network-analytics-eastasia-001",
@@ -104,7 +104,7 @@ const azure_resources = [
                     addressSpace: {
                         addressPrefixes: ["10.20.0.0/16", "10.21.0.0/16"]
                     },
-                    virtualNetworkName: "vnet-p-network-aks-eastasia-001",
+                    virtualNetworkName: "vnet-p-network-containers-eastasia-001",
                     tags: {},
                     subnets: [
                         {
@@ -121,7 +121,7 @@ const azure_resources = [
                     ],
                     virtualNetworkPeerings: [
                         {
-                            virtualNetworkPeeringName: "vnet-p-network-aks-eastasia-001-p-vnet-p-network-transit-eastasia-001",
+                            virtualNetworkPeeringName: "vnet-p-network-containers-eastasia-001-p-vnet-p-network-transit-eastasia-001",
                             allowForwardedTraffic: true,
                             allowGatewayTransit: false,
                             allowVirtualNetworkAccess: true,
@@ -134,7 +134,7 @@ const azure_resources = [
                     addressSpace: {
                         addressPrefixes: ["10.22.0.0/16", "10.23.0.0/16"]
                     },
-                    virtualNetworkName: "vnet-p-network-aks-eastasia-002",
+                    virtualNetworkName: "vnet-p-network-containers-eastasia-002",
                     tags: {},
                     subnets: [
                         {
@@ -148,7 +148,7 @@ const azure_resources = [
                     ],
                     virtualNetworkPeerings: [
                         {
-                            virtualNetworkPeeringName: "vnet-p-network-aks-eastasia-002-p-vnet-p-network-transit-eastasia-001",
+                            virtualNetworkPeeringName: "vnet-p-network-containers-eastasia-002-p-vnet-p-network-transit-eastasia-001",
                             allowForwardedTraffic: true,
                             allowGatewayTransit: false,
                             allowVirtualNetworkAccess: true,
@@ -257,21 +257,21 @@ const azure_resources = [
                     addressSpace: {
                         addressPrefixes: ["10.28.0.0/16", "10.29.0.0/16"]
                     },
-                    virtualNetworkName: "vnet-p-network-vm-eastasia-001",
+                    virtualNetworkName: "vnet-p-network-compute-eastasia-001",
                     tags: {},
                     subnets: [
                         {
                             addressPrefixes: ["10.28.0.0/23"],
-                            subnetName: "snet-p-network-vm-eastasia-001",
+                            subnetName: "snet-p-network-compute-eastasia-001",
                         },
                         {
                             addressPrefixes: ["10.28.2.0/23"],
-                            subnetName: "snet-p-network-vm-eastasia-002",
+                            subnetName: "snet-p-network-compute-eastasia-002",
                         }
                     ],
                     virtualNetworkPeerings: [
                         {
-                            virtualNetworkPeeringName: "vnet-p-network-vm-eastasia-001-peer-vnet-p-network-transit-eastasia-001",
+                            virtualNetworkPeeringName: "vnet-p-network-compute-eastasia-001-peer-vnet-p-network-transit-eastasia-001",
                             allowForwardedTraffic: true,
                             allowGatewayTransit: false,
                             allowVirtualNetworkAccess: true,
