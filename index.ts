@@ -82,12 +82,12 @@ const azure_resources = [
                             remoteVirtualNetwork: { id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-rds-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-vm-eastasia-001" }
                         },
                         {
-                            virtualNetworkPeeringName: "vnet-p-network-transit-eastasia-001-peer-vnet-p-network-bigdata-eastasia-001",
+                            virtualNetworkPeeringName: "vnet-p-network-transit-eastasia-001-peer-vnet-p-network-analytics-eastasia-001",
                             allowForwardedTraffic: false,
                             allowGatewayTransit: true,
                             allowVirtualNetworkAccess: true,
                             useRemoteGateways: false,
-                            remoteVirtualNetwork: { id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-bigdata-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-bigdata-eastasia-001" }
+                            remoteVirtualNetwork: { id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-analytics-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-analytics-eastasia-001" }
                         }
                     ]
                 }
@@ -286,14 +286,14 @@ const azure_resources = [
     {
         ResourceGroup: {
             location: "eastasia",
-            resourceGroupName: "rg-p-network-bigdata-eastasia-001",
+            resourceGroupName: "rg-p-network-analytics-eastasia-001",
             tags: {},
             VirtualNetwork: [
                 {
                     addressSpace: {
                         addressPrefixes: ["10.30.0.0/16", "10.31.0.0/16"]
                     },
-                    virtualNetworkName: "vnet-p-network-bigdata-eastasia-001",
+                    virtualNetworkName: "vnet-p-network-analytics-eastasia-001",
                     tags: {},
                     subnets: [
                         {
@@ -304,9 +304,9 @@ const azure_resources = [
                                     serviceName: "Microsoft.Databricks/workspaces"
                                 }
                             ],
-                            subnetName: "snet-p-network-bigdata-eastasia-001",
+                            subnetName: "snet-p-network-analytics-eastasia-001",
                             networkSecurityGroup: {
-                                id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-bigdata-eastasia-001/providers/Microsoft.Network/networkSecurityGroups/nsg-snet-p-network-bigdata-eastasia-001"
+                                id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-analytics-eastasia-001/providers/Microsoft.Network/networkSecurityGroups/nsg-snet-p-network-analytics-eastasia-001"
                             }
                         },
                         {
@@ -317,15 +317,15 @@ const azure_resources = [
                                     serviceName: "Microsoft.Databricks/workspaces"
                                 }
                             ],
-                            subnetName: "snet-p-network-bigdata-eastasia-002",
+                            subnetName: "snet-p-network-analytics-eastasia-002",
                             networkSecurityGroup: {
-                                id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-bigdata-eastasia-001/providers/Microsoft.Network/networkSecurityGroups/nsg-snet-p-network-bigdata-eastasia-002"
+                                id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-analytics-eastasia-001/providers/Microsoft.Network/networkSecurityGroups/nsg-snet-p-network-analytics-eastasia-002"
                             }
                         }
                     ],
                     virtualNetworkPeerings: [
                         {
-                            virtualNetworkPeeringName: "vnet-p-network-bigdata-eastasia-001-p-vnet-p-network-transit-eastasia-001",
+                            virtualNetworkPeeringName: "vnet-p-network-analytics-eastasia-001-p-vnet-p-network-transit-eastasia-001",
                             allowForwardedTraffic: true,
                             allowGatewayTransit: false,
                             allowVirtualNetworkAccess: true,
@@ -337,11 +337,11 @@ const azure_resources = [
             ],
             NetworkSecurityGroup: [
                 {
-                    networkSecurityGroupName: "nsg-snet-p-network-bigdata-eastasia-001",
+                    networkSecurityGroupName: "nsg-snet-p-network-analytics-eastasia-001",
                     securityRules: [],
                 },
                 {
-                    networkSecurityGroupName: "nsg-snet-p-network-bigdata-eastasia-002",
+                    networkSecurityGroupName: "nsg-snet-p-network-analytics-eastasia-002",
                     securityRules: [],
                 }
             ]
