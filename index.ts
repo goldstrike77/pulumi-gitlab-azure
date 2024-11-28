@@ -416,12 +416,12 @@ const virtualnetworkpeering = new azure.network.VirtualNetworkPeering('VirtualNe
     tags: tags || {}
 }, { dependsOn: [subnet] });
 
-const privatezone = new azure.network.PrivateZone('PrivateZone', {
-    resources: azure_resources,
-    tags: tags || {}
-}, { dependsOn: [resourcegroup] });
-
-const virtualnetworkLink = new azure.network.VirtualNetworkLink('VirtualNetworkLink', {
-    resources: azure_resources,
-    tags: tags || {}
-}, { dependsOn: [privatezone] });
+//const privatezone = new azure.network.PrivateZone('PrivateZone', {
+//    resources: azure_resources,
+//    tags: tags || {}
+//}, { dependsOn: [resourcegroup] });
+//
+//const virtualnetworkLink = new azure.network.VirtualNetworkLink('VirtualNetworkLink', {
+//    resources: azure_resources,
+//    tags: tags || {}
+//}, { dependsOn: [privatezone] });
