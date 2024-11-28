@@ -95,7 +95,37 @@ const azure_resources = [
             PrivateZone: [
                 {
                     location: "global",
-                    privateZoneName: "private.example.com"
+                    privateZoneName: "private.example.com",
+                    VirtualNetworkLink: [
+                        {
+                            virtualNetworkLinkName: "vl-vnet-p-network-analytics-eastasia-001",
+                            id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-analytics-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-analytics-eastasia-001"
+                        },
+                        {
+                            virtualNetworkLinkName: "vl-vnet-p-network-compute-eastasia-001",
+                            id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-analytics-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-compute-eastasia-001"
+                        },
+                        {
+                            virtualNetworkLinkName: "vl-vnet-p-network-containers-eastasia-001",
+                            id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-analytics-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-containers-eastasia-001"
+                        },
+                        {
+                            virtualNetworkLinkName: "vl-vnet-p-network-containers-eastasia-002",
+                            id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-analytics-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-containers-eastasia-002"
+                        },
+                        {
+                            virtualNetworkLinkName: "vl-vnet-p-network-databases-eastasia-001",
+                            id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-analytics-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-databases-eastasia-001"
+                        },
+                        {
+                            virtualNetworkLinkName: "vl-vnet-p-network-databases-eastasia-002",
+                            id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-analytics-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-databases-eastasia-002"
+                        },
+                        {
+                            virtualNetworkLinkName: "vl-vnet-p-network-transit-eastasia-001",
+                            id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-analytics-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-transit-eastasia-001"
+                        }
+                    ]
                 }
             ]
         }
@@ -390,3 +420,8 @@ const privatezone = new azure.network.PrivateZone('PrivateZone', {
     resources: azure_resources,
     tags: tags || {}
 }, { dependsOn: [resourcegroup] });
+
+const virtualnetworkLink = new azure.network.VirtualNetworkLink('VirtualNetworkLink', {
+    resources: azure_resources,
+    tags: tags || {}
+}, { dependsOn: [privatezone] });
