@@ -208,6 +208,12 @@ const azure_resources = [
                     subnets: [
                         {
                             addressPrefixes: ["10.24.0.0/23"],
+                            delegations: [
+                                {
+                                    name: "Microsoft.DBforPostgreSQL/flexibleServers",
+                                    serviceName: "Microsoft.DBforPostgreSQL/flexibleServers"
+                                }
+                            ],
                             subnetName: "snet-p-network-databases-eastasia-001",
                         },
                         {
