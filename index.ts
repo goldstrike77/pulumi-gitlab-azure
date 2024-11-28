@@ -94,8 +94,8 @@ const azure_resources = [
             ],
             PrivateZone: [
                 {
-                    location: "eastasia",
-                    privateZoneName: "pz-p-network-transit-eastasia-001"
+                    location: "global",
+                    privateZoneName: "private.example.com"
                 }
             ]
         }
