@@ -91,6 +91,12 @@ const azure_resources = [
                         }
                     ]
                 }
+            ],
+            PrivateZone: [
+                {
+                    location: "eastasia",
+                    privateZoneName: "pz-p-network-transit-eastasia-001"
+                }
             ]
         }
     },
@@ -379,3 +385,8 @@ const virtualnetworkpeering = new azure.network.VirtualNetworkPeering('VirtualNe
     resources: azure_resources,
     tags: tags || {}
 }, { dependsOn: [subnet] });
+
+const privatezone = new azure.network.PrivateZone('PrivateZone', {
+    resources: azure_resources,
+    tags: tags || {}
+}, { dependsOn: [resourcegroup] });
