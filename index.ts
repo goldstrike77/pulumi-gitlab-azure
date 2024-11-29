@@ -15,6 +15,7 @@ const azure_resources = [
             location: "eastasia",
             resourceGroupName: "rg-p-network-dnszone-eastasia-001",
             tags: {},
+            /*
             PrivateZone: [
                 {
                     location: "global",
@@ -65,6 +66,7 @@ const azure_resources = [
                     ]
                 }
             ]
+                */
         }
     },
     {
