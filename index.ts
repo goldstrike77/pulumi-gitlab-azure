@@ -18,6 +18,26 @@ const azure_resources = [
             PrivateZone: [
                 {
                     location: "global",
+                    privateZoneName: "privatelink.datafactory.azure.net",
+                    VirtualNetworkLink: [
+                        {
+                            virtualNetworkLinkName: "vl-vnet-p-network-analytics-eastasia-001",
+                            virtualNetwork: { id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-analytics-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-analytics-eastasia-001" }
+                        }
+                    ]
+                },
+                {
+                    location: "global",
+                    privateZoneName: "privatelink.adf.azure.com",
+                    VirtualNetworkLink: [
+                        {
+                            virtualNetworkLinkName: "vl-vnet-p-network-analytics-eastasia-001",
+                            virtualNetwork: { id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-analytics-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-analytics-eastasia-001" }
+                        }
+                    ]
+                },
+                {
+                    location: "global",
                     privateZoneName: "privatelink.postgres.database.azure.com",
                     VirtualNetworkLink: [
                         {
