@@ -35,7 +35,7 @@ build:
   script:
     - pulumi login 's3://state?endpoint=minio.home.local:80&disableSSL=true&s3ForcePathStyle=true'
     - pulumi stack select azure-network
-    - pulumi plugin install resource azure-native v2.68.0 --server https://obs.home.local/mirror/pulumi/plugins
+    - pulumi plugin install resource azure-native v2.74.0 --server https://obs.home.local/mirror/pulumi/plugins
     - pulumi plugin install resource random v4.16.7 --server https://obs.home.local/mirror/pulumi/plugins
     - npm config set registry https://registry.npmmirror.com
     - npm install
