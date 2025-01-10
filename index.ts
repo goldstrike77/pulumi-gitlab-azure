@@ -1,5 +1,5 @@
 import * as pulumi from "@pulumi/pulumi";
-import * as azure from "./pulumi-ts-module-azure";
+import * as azure from "../../../github/pulumi/module/pulumi-ts-module-azure";
 
 const tags = {
     project: pulumi.getProject(),
@@ -97,6 +97,13 @@ const azure_resources = [
                         {
                             addressPrefixes: ["10.10.6.0/23"],
                             subnetName: "GatewaySubnet",
+                        },
+                        {
+                            addressPrefixes: ["10.10.8.0/23"],
+                            subnetName: "snet-p-network-ng-eastasia-001",
+                            natGateway: {
+                                id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-transit-eastasia-001/providers/Microsoft.Network/natGateways/ng-p-network-transit-eastasia-001838d1b38",
+                            }
                         }
                     ],
                     virtualNetworkPeerings: [
@@ -149,6 +156,11 @@ const azure_resources = [
                             remoteVirtualNetwork: { id: "/subscriptions/b971283c-e0b7-46a4-9496-9cbfb850ebe5/resourceGroups/rg-p-network-analytics-eastasia-001/providers/Microsoft.Network/virtualNetworks/vnet-p-network-analytics-eastasia-001" }
                         }
                     ]
+                }
+            ],
+            NatGateway: [
+                {
+                    NatGatewayName: "ng-p-network-transit-eastasia-001"
                 }
             ]
         }
@@ -424,6 +436,11 @@ const networksecuritygroup = new azure.network.NetworkSecurityGroup('NetworkSecu
     tags: tags || {}
 }, { dependsOn: [resourcegroup] });
 
+const natgateway = new azure.network.NatGateway('NatGateway', {
+    resources: azure_resources,
+    tags: tags || {}
+}, { dependsOn: [resourcegroup] });
+
 const virtualnetwork = new azure.network.VirtualNetwork('VirtualNetwork', {
     resources: azure_resources,
     tags: tags || {}
@@ -432,7 +449,7 @@ const virtualnetwork = new azure.network.VirtualNetwork('VirtualNetwork', {
 const subnet = new azure.network.Subnet('Subnet', {
     resources: azure_resources,
     tags: tags || {}
-}, { dependsOn: [virtualnetwork, networksecuritygroup] });
+}, { dependsOn: [virtualnetwork, networksecuritygroup, natgateway] });
 
 const virtualnetworkpeering = new azure.network.VirtualNetworkPeering('VirtualNetworkPeering', {
     resources: azure_resources,
